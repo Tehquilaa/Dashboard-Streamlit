@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    
+    color: #262730;  /* Color de texto oscuro para tema claro */
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+h1 {
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px 0;
+}
+
+.justified-text {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.highlight {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #4b6cb7;
+    margin: 20px 0;
+}
+
+.section-header {
+    background: #f1f6ff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.margin-top-intro {
+    margin-top: 50px;
+}
+
+.margin-top-antecedentes {
+    margin-top: 200px;
+}
+/* Clase para texto centrado */
+.centered-text {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 80%;
+    padding: 1rem 0;
+}
+
+/* Contenedor centrado para elementos */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
