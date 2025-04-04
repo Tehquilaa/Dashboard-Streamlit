@@ -1,0 +1,31 @@
+
+
+    .justified-text {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    .highlight {
+        background-color: #f0f2f6;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    .metric-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 5px solid #4b6cb7;
+    }
+    .metric-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4b6cb7;
+    }
+    .tab-content {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 0 0 5px 5px;
+        margin-top: -1px;
+    }

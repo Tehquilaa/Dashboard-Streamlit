@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import os
 import json
 from components.headers import get_main_title, get_intro_highlight, get_section_header, get_introduccion, get_antecedentes, get_datos_experimentales
-from components.trajectory_viz import display_trajectory_visualization
+from components.viz.trajectory_viz import display_trajectory_visualization
 
 # Configuración de la página con tema personalizado
 st.set_page_config(

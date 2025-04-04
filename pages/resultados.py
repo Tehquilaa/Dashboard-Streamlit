@@ -1,62 +1,58 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+from streamlit_lottie import st_lottie
 
-st.set_page_config(page_title="Resultados - Predicción Balín", layout="wide")
+# Importar componentes comunes
+from components.headers import get_section_header
+from components.utils import load_lottiefile, load_css, apply_default_css
+from components.viz.training_viz import display_training_history_section
+from components.viz.prediction_viz import display_trajectory_comparison_section, display_realtime_prediction_section
 
-st.title("Evaluación y Resultados")
+# Configuración de la página
+st.set_page_config(
+    page_title="Resultados - Predicción Balín",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-# Selector para secciones específicas
-seccion = st.sidebar.radio("Selecciona sección:", ["Evaluación", "Predicción", "Conclusiones"])
+# Cargar estilos y configurar aspecto visual
+load_css("styles/resultados.css")
+apply_default_css()
 
-if seccion == "Evaluación":
-    # Sección 6: Evaluación del Modelo
-    st.header("6. Evaluación del Modelo")
-    st.write("""
-    Se entrenaron los modelos durante 100 épocas con un tamaño de batch de 16. Se implementó early stopping para detener el entrenamiento 
-    cuando la métrica de validación (MSE) no mejoraba tras 10 épocas consecutivas.  
-    Los errores en el conjunto de prueba son:
-    - **Modelo LSTM:** MSE ≈ 0.0280, MAE ≈ 0.0799
-    - **Modelo GRU:** MSE ≈ 0.0187, MAE ≈ 0.0892
-    - **Modelo Denso:** MSE ≈ 0.0144, MAE ≈ 0.0850
-    """)
-    st.write("""
-    A continuación se muestra una gráfica simulada del error (MSE) durante el entrenamiento:
-    """)
-    # Gráfica simulada de error
-    fig_err, ax_err = plt.subplots()
-    epochs = np.arange(1, 101)
-    train_error = np.exp(-epochs/30) + 0.02*np.random.randn(100)
-    val_error = np.exp(-epochs/28) + 0.025*np.random.randn(100)
-    ax_err.plot(epochs, train_error, label='Entrenamiento', color='blue')
-    ax_err.plot(epochs, val_error, label='Validación', color='orange')
-    ax_err.set_xlabel("Épocas")
-    ax_err.set_ylabel("Error Cuadrático Medio (MSE)")
-    ax_err.legend()
-    st.pyplot(fig_err)
+# Cargar animaciones
+lottie_results = load_lottiefile("animations/results.json")
+if not lottie_results:  # URL de respaldo
+    lottie_results = "https://assets5.lottiefiles.com/packages/lf20_2znxgjyt.json"
 
-elif seccion == "Predicción":
-    # Sección 7: Predicción
-    st.header("7. Predicción")
-    st.write("""
-    Ingrese valores de las características (por ejemplo, coordenadas normalizadas) para obtener una salida indicativa de la trayectoria.
-    """)
-    valor1 = st.number_input("Valor de la Característica 1", value=0.0)
-    valor2 = st.number_input("Valor de la Característica 2", value=0.0)
+# Encabezado principal con animación
+col1, col2 = st.columns([2, 1])
 
-    if st.button("Predecir"):
-        # Simulación simple: la predicción depende de la suma de las características
-        pred = "Trayectoria Compleja" if (valor1 + valor2) > 1 else "Trayectoria Simple"
-        st.success(f"Predicción simulada: {pred}")
+with col1:
+    st.markdown("<h1>📊 Evaluación y Resultados</h1>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="justified-text highlight">
+    Esta sección presenta los resultados detallados del entrenamiento y evaluación de los modelos de deep learning.
+    Se incluyen visualizaciones interactivas del proceso de entrenamiento, predicciones en tiempo real y
+    métricas comparativas entre las distintas arquitecturas implementadas.
+    </div>
+    """, unsafe_allow_html=True)
 
-else:  # Conclusiones
-    # Sección 8: Conclusiones y Futuras Líneas de Trabajo
-    st.header("8. Conclusiones")
-    st.write("""
-    El uso de redes neuronales para predecir la dinámica de un balín bajo un campo magnético armónico permite abordar 
-    sistemas caóticos mediante métodos basados en datos.  
-    Los resultados preliminares muestran diferencias en el desempeño entre las arquitecturas evaluadas, y la metodología aplicada 
-    permite optimizar los modelos mediante técnicas de hiperparámetros y validación temprana.  
-    Futuras investigaciones podrían integrar conocimientos físicos para mejorar la interpretabilidad y precisión de las predicciones.
-    """)
+with col2:
+    st_lottie(lottie_results, height=250, key="results_animation")
+
+st.markdown("---")
+
+# Sección 1: Historia del Entrenamiento
+st.markdown(get_section_header("1", "📈", "Historial de Entrenamiento"), unsafe_allow_html=True)
+display_training_history_section()
+
+# Sección 2: Visualización de Trayectorias Predichas
+st.markdown(get_section_header("2", "🎯", "Visualización de Trayectorias Predichas"), unsafe_allow_html=True)
+display_trajectory_comparison_section()
+
+# Sección 3: Predicción en Tiempo Real
+st.markdown(get_section_header("3", "🔮", "Predicción en Tiempo Real"), unsafe_allow_html=True)
+display_realtime_prediction_section()
+
+# Pie de página
+st.markdown("---")
+st.markdown("<p style='text-align: center; color: gray;'>© 2025 | Dashboard de Predicción de Dinámica Caótica</p>", unsafe_allow_html=True)

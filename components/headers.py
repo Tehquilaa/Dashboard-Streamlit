@@ -180,3 +180,12 @@ def get_inter_graficas():
        
         **Conclusión**: Sorprendentemente la arquitectura densa tiene el mejor rendimiento con el menor error.
         """
+
+def get_evaluacion_modelos():
+    return """
+    <div class="justified-text highlight">
+    Esta sección presenta los resultados detallados del entrenamiento y evaluación de los modelos de deep learning.
+    Se incluyen visualizaciones interactivas del proceso de entrenamiento, predicciones en tiempo real y
+    métricas comparativas entre las distintas arquitecturas implementadas.
+    </div>
+    """
