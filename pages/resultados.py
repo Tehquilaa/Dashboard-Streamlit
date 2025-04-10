@@ -49,9 +49,28 @@ display_training_history_section()
 st.markdown(get_section_header("2", "🎯", "Visualización de Trayectorias Predichas"), unsafe_allow_html=True)
 display_trajectory_comparison_section()
 
-# Sección 3: Predicción en Tiempo Real
-st.markdown(get_section_header("3", "🔮", "Predicción en Tiempo Real"), unsafe_allow_html=True)
-display_realtime_prediction_section()
+# Sección 3: final
+st.markdown(get_section_header("3", "🔍", "Conclusiones y Trabajo Futuro"), unsafe_allow_html=True)
+
+st.markdown("""
+<div class="justified-text highlight">
+<h4>Principales hallazgos:</h4>
+
+- Las arquitecturas recurrentes (LSTM y GRU) superaron significativamente al modelo denso, demostrando la importancia de capturar dependencias temporales en sistemas caóticos.
+
+- El modelo LSTM mostró el mejor rendimiento general, con una reducción del 53% en MSE comparado con el modelo denso y un 16% respecto al GRU.
+
+- La capacidad de predicción disminuye a medida que aumenta el horizonte temporal, siendo particularmente notable después de 5 pasos de tiempo futuros.
+
+- Los resultados confirman la viabilidad del enfoque basado en deep learning para modelar dinámicas caóticas sin recurrir a ecuaciones físicas explícitas.
+
+<h4>Trabajo futuro:</h4>
+
+- Explorar arquitecturas híbridas que combinen elementos de física y aprendizaje automático.
+- Aumentar el horizonte de predicción mediante técnicas avanzadas como atención y modelos autorregresivos.
+- Evaluar la transferibilidad de los modelos a diferentes condiciones experimentales (campos magnéticos y frecuencias variables).
+</div>
+""", unsafe_allow_html=True)
 
 # Pie de página
 st.markdown("---")

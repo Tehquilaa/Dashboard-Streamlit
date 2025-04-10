@@ -162,28 +162,8 @@ with metrics_col:
     with st.expander("ℹ️ Interpretación de métricas"):
          st.markdown(get_inter_graficas())
 
-# Sección 7: Conclusiones y Hallazgos
-st.markdown(get_section_header("7", "🔍", "Conclusiones y Trabajo Futuro"), unsafe_allow_html=True)
 
-st.markdown("""
-<div class="justified-text highlight">
-<h4>Principales hallazgos:</h4>
 
-- Las arquitecturas recurrentes (LSTM y GRU) superaron significativamente al modelo denso, demostrando la importancia de capturar dependencias temporales en sistemas caóticos.
-
-- El modelo LSTM mostró el mejor rendimiento general, con una reducción del 53% en MSE comparado con el modelo denso y un 16% respecto al GRU.
-
-- La capacidad de predicción disminuye a medida que aumenta el horizonte temporal, siendo particularmente notable después de 5 pasos de tiempo futuros.
-
-- Los resultados confirman la viabilidad del enfoque basado en deep learning para modelar dinámicas caóticas sin recurrir a ecuaciones físicas explícitas.
-
-<h4>Trabajo futuro:</h4>
-
-- Explorar arquitecturas híbridas que combinen elementos de física y aprendizaje automático.
-- Aumentar el horizonte de predicción mediante técnicas avanzadas como atención y modelos autorregresivos.
-- Evaluar la transferibilidad de los modelos a diferentes condiciones experimentales (campos magnéticos y frecuencias variables).
-</div>
-""", unsafe_allow_html=True)
 
 # Pie de página
 st.markdown("---")
