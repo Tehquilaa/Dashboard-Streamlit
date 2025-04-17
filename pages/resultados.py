@@ -19,7 +19,7 @@ load_css("styles/resultados.css")
 apply_default_css()
 
 # Cargar animaciones
-lottie_results = load_lottiefile("animations/results.json")
+lottie_results = load_lottiefile("animations/graphic.json")
 if not lottie_results:  # URL de respaldo
     lottie_results = "https://assets5.lottiefiles.com/packages/lf20_2znxgjyt.json"
 

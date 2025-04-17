@@ -7,7 +7,7 @@ from matplotlib.animation import FuncAnimation
 
 # Función para cargar los datos del CSV
 @st.cache_data  # Cachear para mejorar rendimiento
-def load_trajectory_data(file_path="data/12G-1Hz.csv"):
+def load_trajectory_data(file_path="12G-1Hz.csv"):
     try:
         # Intenta cargar desde el archivo CSV
         if os.path.exists(file_path):
