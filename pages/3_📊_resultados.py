@@ -62,15 +62,20 @@ st.markdown("""
 
 - El modelo LSTM mostró el mejor rendimiento general, con una reducción del 53% en MSE comparado con el modelo denso y un 16% respecto al GRU.
 
-- La capacidad de predicción disminuye a medida que aumenta el horizonte temporal, siendo particularmente notable después de 5 pasos de tiempo futuros.
+- Se observó una marcada disparidad direccional, con un MSE en la coordenada Y aproximadamente 10 veces mayor que en X, lo que sugiere anisotropía en el comportamiento del sistema físico.
 
-- Los resultados confirman la viabilidad del enfoque basado en deep learning para modelar dinámicas caóticas sin recurrir a ecuaciones físicas explícitas.
+- La capacidad de predicción disminuye exponencialmente a medida que aumenta el horizonte temporal, siguiendo el patrón característico de sistemas caóticos, siendo particularmente notable después de 5 pasos de tiempo futuros.
+
+- Los resultados confirman la viabilidad del enfoque basado en deep learning para modelar dinámicas caóticas sin recurrir a ecuaciones físicas explícitas, aunque con limitaciones inherentes a la naturaleza misma de los sistemas caóticos.
 
 <h4>Trabajo futuro:</h4>
 
-- Explorar arquitecturas híbridas que combinen elementos de física y aprendizaje automático.
-- Aumentar el horizonte de predicción mediante técnicas avanzadas como atención y modelos autorregresivos.
-- Evaluar la transferibilidad de los modelos a diferentes condiciones experimentales (campos magnéticos y frecuencias variables).
+- Explorar arquitecturas híbridas que combinen conocimiento físico del sistema con redes neuronales para mejorar la precisión a largo plazo.
+
+- Implementar técnicas de regularización específicas para sistemas caóticos y métodos de atención para capturar dependencias a más largo plazo.
+
+- Aumentar el horizonte de predicción mediante modelos autorregresivos y técnicas de reajuste progresivo que limiten la acumulación de error.
+
 </div>
 """, unsafe_allow_html=True)
 
