@@ -13,10 +13,13 @@ from components.headers import get_inter_graficas, get_proceso_train, get_sectio
 from components.headers import get_tarjeta_lstm, get_tarjeta_gru, get_tarjeta_densa
 # Configuración de la página
 st.set_page_config(
-    page_title="Modelos - Predicción Balín",
+    page_title="Modelo - Predicción Balín",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    page_icon="🧠"
 )
+st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+
 
 # Función para cargar animaciones Lottie
 def load_lottiefile(filepath):

@@ -18,10 +18,13 @@ import streamlit.components.v1 as components
 
 # Configuración de la página
 st.set_page_config(
-    page_title="Predicciones Avanzadas",
+    page_title="Predicciones - Predicción Balín",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    page_icon="🔮"
 )
+
+st.sidebar.caption("© 2025 | Desarrollado por Aldo")
 
 # Estilos CSS personalizados
 def load_css(css_file):

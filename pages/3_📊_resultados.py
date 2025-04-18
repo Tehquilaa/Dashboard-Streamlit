@@ -11,8 +11,10 @@ from components.viz.prediction_viz import display_trajectory_comparison_section,
 st.set_page_config(
     page_title="Resultados - Predicción Balín",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    page_icon="📊"
 )
+st.sidebar.caption("© 2025 | Desarrollado por Aldo")
 
 # Cargar estilos y configurar aspecto visual
 load_css("styles/resultados.css")

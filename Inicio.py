@@ -13,12 +13,14 @@ st.set_page_config(
     page_title="Predicción de la Dinámica del Balín",
     layout="wide",
     initial_sidebar_state="expanded",
-    page_icon="🔮"
+    page_icon="🏠"
 )
+
+st.sidebar.caption("© 2025 | Desarrollado por Aldo")
 
 # Cargar CSS desde archivo externo
 def load_css(css_file):
-    with open(css_file, "r") as f:
+    with open(css_file, "r") as f: 
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Cargar nuestro CSS personalizado

@@ -7,14 +7,18 @@ from matplotlib.animation import FuncAnimation
 
 # Función para cargar los datos del CSV
 @st.cache_data  # Cachear para mejorar rendimiento
-def load_trajectory_data(file_path="12G-1Hz.csv"):
+def load_trajectory_data(file_name="12G-1Hz.csv"):
     try:
-        # Intenta cargar desde el archivo CSV
+        # Construir ruta absoluta al archivo CSV
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_dir, file_name)
+        
         if os.path.exists(file_path):
             # Carga el CSV con pandas
             data = pd.read_csv(file_path)
             return data["XM"].values, data["YM"].values
         else:
+            st.warning(f"Archivo no encontrado: {file_path}")
             return generate_sample_data(1020)
     except Exception as e:
         st.error(f"Error al cargar datos: {e}")
