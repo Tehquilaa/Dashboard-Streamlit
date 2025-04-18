@@ -1,7 +1,7 @@
 <style>
     /* Reset para el footer de ancho completo */
     .main .block-container {
-        padding-bottom: 0 !important;
+        padding-bottom: 70px !important; /* Espacio para el footer */
         max-width: 100%;
     }
     
@@ -10,17 +10,17 @@
         display: none !important;
     }
     
-    /* Footer principal - adaptable sin fondo */
+    /* Footer principal - posicionamiento fijo */
     .footer-container {
+        position: fixed; /* Mantiene el footer visible siempre */
+        bottom: 0;
+        left: 0;
+        right: 0;
         padding: 0.75rem 0;
-        margin-top: 1rem;
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        color: #333;
+        background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+        backdrop-filter: blur(5px); /* Efecto de desenfoque moderno */
+        z-index: 999; /* Asegura que esté por encima de otros elementos */
+        border-top: 1px solid #eaeaea; /* Borde sutil para separación */
     }
     
     /* Contenido del footer - responsive */
