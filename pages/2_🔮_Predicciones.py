@@ -110,13 +110,11 @@ with col1:
     # Mostrar información del modelo si está cargado
     if st.session_state["model_info"]:
         info = st.session_state["model_info"]
-        st.markdown("<div class='info-box'>", unsafe_allow_html=True)
         st.markdown(f"**Modelo:** {info['tipo']}")
         st.markdown(f"**Capas:** {info['capas']}")
         st.markdown(f"**Parámetros:** {info['parámetros']:,}")
         st.markdown(f"**Entrada:** {info['formato_entrada']}")
         st.markdown(f"**Salida:** {info['formato_salida']}")
-        st.markdown("</div>", unsafe_allow_html=True)
 
 with col2:
     st.markdown("<h2 class='section-header'>2. 📊 Datos de Test</h2>", unsafe_allow_html=True)
