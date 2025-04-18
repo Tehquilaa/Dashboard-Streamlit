@@ -341,10 +341,6 @@ if "prediction_results" in st.session_state:
             show_grid = st.checkbox("Mostrar cuadrícula", value=True)
             show_error_overlay = st.checkbox("Mostrar error superpuesto", value=False)
         
-        with col_viz3:
-            show_3d = st.checkbox("Vista 3D", value=False, 
-                                  help="Mostrar visualización 3D de la trayectoria")
-    
     # Dividir en dos columnas: gráfica y métricas
     col1, col2 = st.columns([2, 1])
     
