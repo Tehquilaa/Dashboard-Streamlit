@@ -196,5 +196,9 @@ def load_footer():
 st.markdown("---")
 footer_code = load_footer()
 if footer_code:
-    components.html(footer_code, height=180,
-                   scrolling=False, width=1000, )
+   
+    components.html(
+        footer_code, 
+        height=60,  # Altura reducida
+        scrolling=False
+    )
