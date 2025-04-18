@@ -12,6 +12,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
+import streamlit.components.v1 as components
 
 
 
@@ -572,10 +573,32 @@ if "prediction_results" in st.session_state:
         
         st.markdown("</div>", unsafe_allow_html=True)
 
-# Pie de página
+def load_footer():
+    # Obtener el directorio de la página actual (pages/)
+    current_dir = os.path.dirname(__file__)
+    
+    # Subir un nivel para llegar al directorio raíz del proyecto
+    project_root = os.path.dirname(current_dir)
+    
+    # Construir la ruta al footer desde el directorio raíz
+    html_path = os.path.join(project_root, "styles", "footer.html")
+
+    footer_content = ""
+    try:
+        # Cargar el archivo HTML
+        with open(html_path, "r", encoding="utf-8") as f:
+            footer_content = f.read()
+    except FileNotFoundError:
+        st.error(f"Error: No se encontró el archivo del footer en {html_path}")
+        return "" # Retorna vacío si no se encuentra
+    except Exception as e:
+        st.error(f"Error al leer el archivo del footer: {e}")
+        return "" # Retorna vacío si hay error
+
+    return footer_content
+
 st.markdown("---")
-st.markdown("""
-<p style='text-align: center; color: gray; font-size: 0.85rem;'>
-    📊 Dashboard de Predicción de Trayectorias | Versión 2.1 | © 2025
-</p>
-""", unsafe_allow_html=True)
+footer_code = load_footer()
+if footer_code:
+    components.html(footer_code, height=180,
+                   scrolling=False, width=1000, )

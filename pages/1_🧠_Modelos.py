@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -165,6 +166,32 @@ with metrics_col:
 
 
 
-# Pie de página
+def load_footer():
+    # Obtener el directorio de la página actual (pages/)
+    current_dir = os.path.dirname(__file__)
+    
+    # Subir un nivel para llegar al directorio raíz del proyecto
+    project_root = os.path.dirname(current_dir)
+    
+    # Construir la ruta al footer desde el directorio raíz
+    html_path = os.path.join(project_root, "styles", "footer.html")
+
+    footer_content = ""
+    try:
+        # Cargar el archivo HTML
+        with open(html_path, "r", encoding="utf-8") as f:
+            footer_content = f.read()
+    except FileNotFoundError:
+        st.error(f"Error: No se encontró el archivo del footer en {html_path}")
+        return "" # Retorna vacío si no se encuentra
+    except Exception as e:
+        st.error(f"Error al leer el archivo del footer: {e}")
+        return "" # Retorna vacío si hay error
+
+    return footer_content
+
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: gray;'>© 2025 | Dashboard de Predicción de Dinámica Caótica</p>", unsafe_allow_html=True)
+footer_code = load_footer()
+if footer_code:
+    components.html(footer_code, height=180,
+                   scrolling=False, width=1000, )

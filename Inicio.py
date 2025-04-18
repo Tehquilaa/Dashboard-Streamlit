@@ -1,13 +1,12 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
-import requests
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import os
 import json
+import os
+import streamlit.components.v1 as components 
 from components.headers import get_main_title, get_intro_highlight, get_section_header, get_introduccion, get_antecedentes, get_datos_experimentales
 from components.viz.trajectory_viz import display_trajectory_visualization
+
 
 # Configuración de la página con tema personalizado
 st.set_page_config(
@@ -109,3 +108,30 @@ with video_col:
         permitiendo generar campos magnéticos variables con frecuencias programables.
         """)
 
+
+
+def load_footer():
+    # Construir ruta absoluta al archivo HTML combinado
+    base_path = os.path.dirname(__file__)
+    html_path = os.path.join(base_path, "styles", "footer.html")
+
+    footer_content = ""
+    try:
+        # Cargar el archivo HTML (que ahora incluye el CSS)
+        with open(html_path, "r", encoding="utf-8") as f:
+            footer_content = f.read()
+    except FileNotFoundError:
+        st.error(f"Error: No se encontró el archivo del footer en {html_path}")
+        return "" # Retorna vacío si no se encuentra
+    except Exception as e:
+        st.error(f"Error al leer el archivo del footer: {e}")
+        return "" # Retorna vacío si hay error
+
+    return footer_content
+
+st.markdown("---")
+footer_code = load_footer()
+if footer_code:
+    components.html(footer_code, height=180,
+                   scrolling=False, width=1000, )
+    

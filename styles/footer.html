@@ -1,0 +1,87 @@
+<style>
+    /* Reset para el footer de ancho completo */
+    .main .block-container {
+        padding-bottom: 0 !important;
+        max-width: 100%;
+    }
+    
+    /* Ocultar footer nativo de Streamlit */
+    footer {
+        display: none !important;
+    }
+    
+    /* Footer principal - más compacto y sin fondo */
+    .footer-container {
+        /* Eliminado el background gradient */
+        padding: 12px 0;
+        margin-top: 20px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        color: #333; /* Color de texto oscuro */
+    }
+    
+    /* Contenido del footer - alineado a la derecha */
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end; /* Alineado a la derecha */
+        gap: 15px;
+    }
+    
+    /* Avatar del perfil */
+    .profile-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid #4b6cb7; /* Borde azul para mantener algo del color original */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Enlaces e iconos */
+    .footer-links {
+        display: flex;
+        gap: 15px;
+        margin-right: 20px; /* Espacio a la derecha */
+    }
+    
+    .footer-links a {
+        color: #4b6cb7; /* Color azul para los iconos */
+        font-size: 18px;
+        transition: transform 0.3s;
+    }
+    
+    .footer-links a:hover {
+        transform: scale(1.2);
+    }
+</style>
+
+<div class="footer-container">
+    <div class="footer-content">
+        <!-- Avatar de perfil -->
+        <a href="https://share.streamlit.io/user/tehquilaa" target="_blank">
+            <img src="https://image.myanimelist.net/ui/5LYzTBVoS196gvYvw3zjwOCO1WD503F8Tl8WtY6JeBc"
+                     class="profile-avatar"
+                     alt="Perfil">
+        </a>
+        <!-- Solo iconos de redes sociales -->
+        <div class="footer-links">
+            <a href="https://github.com/Tehquilaa" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:jimenezaldo15@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
