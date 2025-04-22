@@ -93,9 +93,9 @@ with video_col:
     # Video y visualizaciones en la columna derecha
     st.markdown("<h3 style='text-align:center; color:#4b6cb7;'>Demo del Experimento</h3>", unsafe_allow_html=True)
     
-  
+    video_url = "https://youtu.be/g74c5PvkJRM"
     st.video(
-        "video/experimento.mp4"
+        video_url
     ) 
     
 
