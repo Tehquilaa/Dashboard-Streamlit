@@ -18,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     page_icon="🧠"
 )
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 
 # Función para cargar animaciones Lottie

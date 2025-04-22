@@ -24,7 +24,7 @@ st.set_page_config(
     page_icon="🔮"
 )
 
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Estilos CSS personalizados
 def load_css(css_file):

@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     page_icon="📊"
 )
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Cargar estilos y configurar aspecto visual
 load_css("styles/resultados.css")
