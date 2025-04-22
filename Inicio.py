@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon="🏠"
 )
 
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Cargar CSS desde archivo externo
 def load_css(css_file):
