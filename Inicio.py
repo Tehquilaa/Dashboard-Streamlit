@@ -97,7 +97,6 @@ with video_col:
     st.video(
         "video/experimento.mp4",
         format="video/mp4", 
-        start_time=3,
     ) 
     
 
