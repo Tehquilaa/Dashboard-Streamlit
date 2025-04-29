@@ -5,7 +5,7 @@ import os
 from components.headers import get_section_header
 from components.utils import load_lottiefile, load_css, apply_default_css
 from components.viz.training_viz import display_training_history_section
-from components.viz.prediction_viz import display_trajectory_comparison_section, display_realtime_prediction_section
+from components.viz.prediction_viz import display_trajectory_comparison_section
 
 # Configuración de la página
 st.set_page_config(
