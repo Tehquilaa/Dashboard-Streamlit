@@ -13,3 +13,9 @@ Dashboard interactivo para visualizar y analizar la predicción de trayectorias 
 - Streamlit
 - Matplotlib/Plotly
 - Pandas/NumPy
+
+## Cómo citar este trabajo
+
+Si utilizas este software en tu investigación, por favor cita:
+
+Jiménez Rodríguez, A. E. (2025). Dashboard para Predicción de Dinámicas Caóticas [Software].
