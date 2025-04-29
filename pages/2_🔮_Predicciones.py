@@ -218,7 +218,7 @@ with col3:
     window_size = st.slider(
         "Ventana de entrada (puntos)",
         min_value=100, 
-        max_value=500,
+        max_value=510,
         value=200,
         step=25,
         help="Número de puntos consecutivos utilizados como entrada"
@@ -540,7 +540,7 @@ if "prediction_results" in st.session_state:
         error_fig.update_layout(
             title="Error por paso de predicción",
             xaxis_title="Paso",
-            yaxis_title="Error",
+            yaxis_title="Error (Distancia Euclidiana)",
             height=250,
             margin=dict(l=10, r=10, t=40, b=10),
             hovermode="closest"
