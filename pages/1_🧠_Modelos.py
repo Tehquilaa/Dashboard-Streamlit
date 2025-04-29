@@ -90,7 +90,7 @@ with model_viz_col:
     fig.add_trace(go.Bar(
         x=models,
         y=nodes,
-        name='Neuronas',
+        name='Neuronas (Unidades)',
         marker_color='#63a6e6',
         text=nodes,
         textposition='auto',
@@ -146,9 +146,9 @@ with metrics_col:
     st.markdown("<h4 style='text-align:center; color:#4b6cb7;'>Métricas de Rendimiento</h4>", unsafe_allow_html=True)
     
     metrics = {
-        'LSTM': {'MSE': 0.0280, 'MAE': 0.0798,},
-        'GRU': {'MSE': 0.0158, 'MAE': 0.0914,},
-        'Denso': {'MSE': 0.0143, 'MAE': 0.0850,}
+        'LSTM': {'MSE': 567.4424, 'MAE': 21.8464,},
+        'GRU': {'MSE': 613.2046, 'MAE': 22.1936,},
+        'Denso': {'MSE': 594.6560, 'MAE': 22.7597,}
     }
     
     # Convertir a DataFrame para visualización
