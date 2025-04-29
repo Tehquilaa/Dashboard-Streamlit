@@ -267,7 +267,7 @@ def display_trajectory_comparison_section():
                 ))
                 
                 fig.update_layout(
-                    title="Error absoluto por paso de predicción",
+                    title="Error Euclidiano por paso de predicción",
                     xaxis_title="Paso de predicción",
                     yaxis_title="Error absoluto",
                 )
@@ -404,10 +404,6 @@ def display_trajectory_comparison_section():
             st.metric("Error medio", f"{error_medio:.4f}")
             st.metric("Desviación", f"{error_std:.4f}")
             
-            # Mostrar errores por segmento
-            st.markdown("#### Error por segmento")
-            for segmento, valor in model_data["error_by_segment"].items():
-                st.metric(segmento.capitalize(), f"{valor:.4f}")
         
         with col2:
             # Crear un mapa de calor 2D basado en los puntos reales y sus errores
