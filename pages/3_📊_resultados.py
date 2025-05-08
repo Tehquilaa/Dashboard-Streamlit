@@ -5,7 +5,7 @@ import os
 from components.headers import get_section_header
 from components.utils import load_lottiefile, load_css, apply_default_css
 from components.viz.training_viz import display_training_history_section
-from components.viz.prediction_viz import display_trajectory_comparison_section, display_realtime_prediction_section
+from components.viz.prediction_viz import display_trajectory_comparison_section
 
 # Configuración de la página
 st.set_page_config(
@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     page_icon="📊"
 )
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Cargar estilos y configurar aspecto visual
 load_css("styles/resultados.css")
@@ -51,6 +51,8 @@ display_training_history_section()
 st.markdown(get_section_header("2", "🎯", "Visualización de Trayectorias Predichas"), unsafe_allow_html=True)
 display_trajectory_comparison_section()
 
+st.markdown("---")
+
 # Sección 3: final
 st.markdown(get_section_header("3", "🔍", "Conclusiones y Trabajo Futuro"), unsafe_allow_html=True)
 
@@ -58,23 +60,20 @@ st.markdown("""
 <div class="justified-text highlight">
 <h4>Principales hallazgos:</h4>
 
-- Las arquitecturas recurrentes (LSTM y GRU) superaron significativamente al modelo denso, demostrando la importancia de capturar dependencias temporales en sistemas caóticos.
+- El análisis comparativo de modelos para 
+            predicción de dinámicas caóticas reveló que las arquitecturas 
+            recurrentes superan significativamente al modelo denso, con el LSTM demostrando el mejor rendimiento general 
+            (reducción del 53% en MSE frente al denso y 16% respecto al GRU). Los datos mostraron una marcada anisotropía en el comportamiento del sistema, 
+            con errores aproximadamente 10 veces mayores en la coordenada Y que en X, sugiriendo influencias direccionales del campo electromagnético.
 
-- El modelo LSTM mostró el mejor rendimiento general, con una reducción del 53% en MSE comparado con el modelo denso y un 16% respecto al GRU.
-
-- Se observó una marcada disparidad direccional, con un MSE en la coordenada Y aproximadamente 10 veces mayor que en X, lo que sugiere anisotropía en el comportamiento del sistema físico.
-
-- La capacidad de predicción disminuye exponencialmente a medida que aumenta el horizonte temporal, siguiendo el patrón característico de sistemas caóticos, siendo particularmente notable después de 5 pasos de tiempo futuros.
-
-- Los resultados confirman la viabilidad del enfoque basado en deep learning para modelar dinámicas caóticas sin recurrir a ecuaciones físicas explícitas, aunque con limitaciones inherentes a la naturaleza misma de los sistemas caóticos.
+- La precisión predictiva disminuye exponencialmente con el horizonte temporal, 
+            especialmente después de 5 pasos, confirmando el patrón característico de sistemas caóticos, 
+            mientras que se identificaron "ventanas de predictibilidad" donde temporalmente todos los modelos mejoran 
+            su rendimiento, seguidas por regiones de alta incertidumbre.
 
 <h4>Trabajo futuro:</h4>
 
 - Explorar arquitecturas híbridas que combinen conocimiento físico del sistema con redes neuronales para mejorar la precisión a largo plazo.
-
-- Implementar técnicas de regularización específicas para sistemas caóticos y métodos de atención para capturar dependencias a más largo plazo.
-
-- Aumentar el horizonte de predicción mediante modelos autorregresivos y técnicas de reajuste progresivo que limiten la acumulación de error.
 
 </div>
 """, unsafe_allow_html=True)

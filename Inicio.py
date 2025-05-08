@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon="🏠"
 )
 
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Cargar CSS desde archivo externo
 def load_css(css_file):
@@ -93,11 +93,9 @@ with video_col:
     # Video y visualizaciones en la columna derecha
     st.markdown("<h3 style='text-align:center; color:#4b6cb7;'>Demo del Experimento</h3>", unsafe_allow_html=True)
     
-  
+    video_url = "https://youtu.be/g74c5PvkJRM"
     st.video(
-        "video/experimento.mp4",
-        format="video/mp4", 
-        start_time=3,
+        video_url
     ) 
     
 

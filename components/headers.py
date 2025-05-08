@@ -178,7 +178,7 @@ def get_inter_graficas():
         - **MSE (Error Cuadrático Medio)**: Mide la diferencia cuadrática promedio entre los valores predichos y reales. Menor es mejor.
         - **MAE (Error Absoluto Medio)**: Mide la diferencia absoluta promedio. Menor es mejor.
        
-        **Conclusión**: Sorprendentemente la arquitectura densa tiene el mejor rendimiento con el menor error.
+        **Conclusión**: La arquitectura LSTM tiene el "mejor" rendimiento con el menor error.
         """
 
 def get_evaluacion_modelos():

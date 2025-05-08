@@ -3,12 +3,11 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from data.simulation import generate_trajectory_data, generate_realtime_prediction
-import os
+from data.simulation import generate_realtime_prediction
 import tensorflow as tf
 import joblib
-from pathlib import Path
-import json
+
+
 
 def load_model_results(model_type):
     """Carga los resultados reales de predicción del modelo especificado"""
@@ -268,7 +267,7 @@ def display_trajectory_comparison_section():
                 ))
                 
                 fig.update_layout(
-                    title="Error absoluto por paso de predicción",
+                    title="Error Euclidiano por paso de predicción",
                     xaxis_title="Paso de predicción",
                     yaxis_title="Error absoluto",
                 )
@@ -405,10 +404,6 @@ def display_trajectory_comparison_section():
             st.metric("Error medio", f"{error_medio:.4f}")
             st.metric("Desviación", f"{error_std:.4f}")
             
-            # Mostrar errores por segmento
-            st.markdown("#### Error por segmento")
-            for segmento, valor in model_data["error_by_segment"].items():
-                st.metric(segmento.capitalize(), f"{valor:.4f}")
         
         with col2:
             # Crear un mapa de calor 2D basado en los puntos reales y sus errores
@@ -565,135 +560,4 @@ def display_trajectory_comparison_section():
         **Observación**: Los modelos muestran mayor error en los segmentos {peor_segmento}s de la trayectoria.
         El modelo {mejor_modelo_global} obtiene el mejor rendimiento global, con MSE de {min([lstm_results['metrics']['mse'], gru_results['metrics']['mse'], dense_results['metrics']['mse']]):.4f}.
         """)
-
-def display_realtime_prediction_section():
-    """Muestra la sección de predicción en tiempo real"""
-    st.markdown("""
-    <div class="justified-text">
-    Para entender mejor cómo funcionan los modelos en la práctica, puedes probar a predecir la trayectoria
-    ingresando coordenadas iniciales. El sistema tomará estos valores y generará una secuencia
-    que representa la trayectoria predicha del balín.
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Crear columnas para los inputs y resultados
-    input_col, result_col = st.columns([1, 2])
-    
-    with input_col:
-        st.markdown("<h4 style='color:#4b6cb7;'>Parámetros de entrada</h4>", unsafe_allow_html=True)
-        
-        st.markdown("**Condiciones iniciales (secuencia):**")
-        
-        # Crear 5 filas de coordenadas X, Y de entrada
-        coords = []
-        for i in range(5):
-            col_x, col_y = st.columns(2)
-            with col_x:
-                x = st.number_input(f"X{i+1}", value=round(float(np.sin(i*0.5)), 2), format="%.2f", key=f"x{i}")
-            with col_y:
-                y = st.number_input(f"Y{i+1}", value=round(float(np.cos(i*0.5)), 2), format="%.2f", key=f"y{i}")
-            coords.append((x, y))
-        
-        # Seleccionar modelo para la predicción
-        prediction_model = st.selectbox("Modelo a utilizar:",
-                                     ["LSTM", "GRU", "Red Densa"],
-                                     index=0)
-        
-        # Configuración de la predicción
-        st.markdown("**Configuración:**")
-        steps = st.slider("Pasos a predecir:", 5, 30, 10)
-        
-        # Botón para ejecutar la predicción
-        predict_btn = st.button("Generar Predicción", type="primary")
-    
-    with result_col:
-        st.markdown("<h4 style='text-align:center; color:#4b6cb7;'>Resultado de la predicción</h4>", unsafe_allow_html=True)
-        
-        # Si se presiona el botón, mostrar la predicción
-        if predict_btn:
-            # Obtener predicciones
-            prediction_data = generate_realtime_prediction(coords, steps, prediction_model)
-            
-            # Visualizar la trayectoria predicha
-            fig = go.Figure()
-            
-            # Puntos iniciales (entrada)
-            fig.add_trace(
-                go.Scatter(
-                    x=prediction_data['initial']['x'],
-                    y=prediction_data['initial']['y'],
-                    mode='lines+markers',
-                    line=dict(color='black', width=2),
-                    marker=dict(size=8, color='black'),
-                    name='Puntos iniciales'
-                )
-            )
-            
-            # Trayectoria predicha
-            model_color = "#4b6cb7" if prediction_model == "LSTM" else "#ff7043" if prediction_model == "GRU" else "#4caf50"
-            
-            fig.add_trace(
-                go.Scatter(
-                    x=prediction_data['predicted']['x'],
-                    y=prediction_data['predicted']['y'],
-                    mode='lines+markers',
-                    line=dict(color=model_color, width=2),
-                    marker=dict(size=8, 
-                                color=list(range(len(prediction_data['predicted']['x']))),
-                                colorscale='Viridis',
-                                showscale=True,
-                                colorbar=dict(
-                                    title=dict(
-                                        text="Tiempo",
-                                        side="right"
-                                    )
-                                )),
-                    name=f'Predicción {prediction_model}'
-                )
-            )
-            
-            # Configuración del layout
-            fig.update_layout(
-                title=f"Trayectoria predicha con modelo {prediction_model}",
-                xaxis_title="Posición X",
-                yaxis_title="Posición Y",
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                height=400,
-                hovermode='closest',
-                plot_bgcolor='rgba(240,242,246,0.8)',
-                yaxis=dict(scaleanchor="x", scaleratio=1)
-            )
-            
-            # Mostrar figura
-            st.plotly_chart(fig, use_container_width=True)
-            
-            # Mostrar tabla con valores predichos
-            st.markdown("<h5 style='color:#4b6cb7;'>Valores predichos:</h5>", unsafe_allow_html=True)
-            
-            # Crear DataFrame con los resultados
-            df_results = pd.DataFrame({
-                'Paso': [f"t+{i+1}" for i in range(steps)],
-                'Coordenada X': [round(x, 3) for x in prediction_data['predicted']['x']],
-                'Coordenada Y': [round(y, 3) for y in prediction_data['predicted']['y']],
-                'Distancia al origen': [round(np.sqrt(x**2 + y**2), 3) for x, y in 
-                                       zip(prediction_data['predicted']['x'], 
-                                           prediction_data['predicted']['y'])],
-            })
-            
-            st.dataframe(df_results, use_container_width=True)
-        else:
-            # Mensaje cuando no se ha hecho una predicción
-            st.info("Ingresa los datos iniciales y haz clic en 'Generar Predicción' para ver los resultados.")
-            
-            # Imagen ilustrativa
-            st.markdown("""
-            <div style="display: flex; justify-content: center; margin-top: 30px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Lorenz_system_r28_s10_b2-6.png/320px-Lorenz_system_r28_s10_b2-6.png" 
-                     alt="Ilustración Sistema Caótico" 
-                     width="300">
-            </div>
-            <p style="text-align: center; font-size: 0.8rem; color: gray;">
-            Ilustración: Trayectoria en un sistema caótico (Atractor de Lorenz)
-            </p>
-            """, unsafe_allow_html=True)
 

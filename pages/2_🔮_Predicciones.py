@@ -24,7 +24,7 @@ st.set_page_config(
     page_icon="🔮"
 )
 
-st.sidebar.caption("© 2025 | Desarrollado por Aldo")
+st.sidebar.caption("© 2025 | Desarrollado por Aldo Eugenio Jiménez Rodríguez")
 
 # Estilos CSS personalizados
 def load_css(css_file):
@@ -126,11 +126,13 @@ with col2:
     # Selector de trayectoria
     traj_idx = st.number_input(
         "Índice de trayectoria", 
-        min_value=0, 
-        max_value=2, 
-        value=0,
+        min_value=1, 
+        max_value=3, 
+        value=1,
         help="Índice de la trayectoria a predecir (0-2)"
     )
+
+    traj_idx = traj_idx - 1  # Ajustar a índice 0
     
     load_data_btn = st.button("📥 Cargar Datos", type="primary")
     
@@ -156,8 +158,9 @@ with col2:
                 st.session_state["test_data"] = df_test
                 st.session_state["dataset_choice"] = dataset_choice
                 st.session_state["traj_idx"] = traj_idx
+                traj_mas_uno = traj_idx + 1
                 
-                st.success(f"✅ Datos cargados: {dataset_choice}, Trayectoria {traj_idx+1}")
+                st.success(f"✅ Datos cargados: {dataset_choice}, Trayectoria {traj_mas_uno}")
                 
             except Exception as e:
                 st.error(f"Error al cargar datos: {e}")
@@ -218,7 +221,7 @@ with col3:
     window_size = st.slider(
         "Ventana de entrada (puntos)",
         min_value=100, 
-        max_value=500,
+        max_value=510,
         value=200,
         step=25,
         help="Número de puntos consecutivos utilizados como entrada"
@@ -540,7 +543,7 @@ if "prediction_results" in st.session_state:
         error_fig.update_layout(
             title="Error por paso de predicción",
             xaxis_title="Paso",
-            yaxis_title="Error",
+            yaxis_title="Error (Distancia Euclidiana)",
             height=250,
             margin=dict(l=10, r=10, t=40, b=10),
             hovermode="closest"
