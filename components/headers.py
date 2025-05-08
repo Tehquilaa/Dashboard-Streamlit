@@ -123,7 +123,7 @@ def get_tarjeta_lstm():
         <p><strong>Learning Rate:</strong> 0.006</p>
         <p><strong>Capas:</strong> [80, 29]</p>
         <p><strong>Optimizer:</strong> Adamax</p>
-        <p><strong>Batch Size:</strong> 64</p>
+        <p><strong>Batch Size:</strong> 16</p>
         <p><strong>Epochs:</strong> 100 (con early stopping)</p>
     </div>
     """
@@ -137,7 +137,7 @@ def get_tarjeta_gru():
         <p><strong>Learning Rate:</strong> 0.0004</p>
         <p><strong>Capas:</strong> [62, 47]</p>
         <p><strong>Optimizer:</strong> Adamax</p>
-        <p><strong>Batch Size:</strong> 32</p>
+        <p><strong>Batch Size:</strong> 16</p>
         <p><strong>Epochs:</strong> 100 (con early stopping)</p>
     </div>
     """
@@ -151,8 +151,8 @@ def get_tarjeta_densa():
         <p><strong>Learning Rate:</strong> 0.007</p>
         <p><strong>Capas:</strong> [56, 16, 11, 11]</p>
         <p><strong>Optimizer:</strong> Adamax</p>
-        <p><strong>Batch Size:</strong> 128</p>
-        <p><strong>Epochs:</strong> 80 (con early stopping)</p>
+        <p><strong>Batch Size:</strong> 16</p>
+        <p><strong>Epochs:</strong> 100 (con early stopping)</p>
     </div>
     """
 
